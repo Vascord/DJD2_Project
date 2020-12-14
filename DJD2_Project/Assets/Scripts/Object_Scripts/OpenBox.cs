@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class OpenBox : MonoBehaviour
 {
@@ -22,7 +20,6 @@ public class OpenBox : MonoBehaviour
             }
         }
 
-        Debug.Log(e);
 
         if(e == 4)
         {
