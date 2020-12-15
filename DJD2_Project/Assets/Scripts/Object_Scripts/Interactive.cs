@@ -3,14 +3,17 @@
 public class Interactive : MonoBehaviour
 {
     public enum InteractiveType { PICKABLE, INTERACT_ONCE, INTERACT_MULTI, INDIRECT };
+    
 
     public InteractiveType  type;
     public bool             isActive;
+    public bool             deactivationLeader = false;
     public string[]         interactionTexts;
     public string           requirementText;
     public Texture          icon;
     public Interactive[]    requirements;
     public Interactive[]    activationChain;
+    public Interactive[]    deActivationChain;
     public Interactive[]    interactionChain;
 
     private Animator _animator;
@@ -20,6 +23,11 @@ public class Interactive : MonoBehaviour
     {
         _animator               = GetComponent<Animator>();
         _curInteractionTextId   = 0;
+    }
+    void Update()
+    {
+        if (deactivationLeader == true)
+            CheckForDeactivationCicle();
     }
 
     public string GetInteractionText()
@@ -39,9 +47,13 @@ public class Interactive : MonoBehaviour
     {
         if (_animator != null)
             _animator.SetTrigger("Interact");
-
+        if(!isActive)
+        {
+            ProcessDeActivationChain();
+        }
         if (isActive)
         {
+            ProcessDeActivationChain();
             ProcessActivationChain();
             ProcessInteractionChain();
 
@@ -57,7 +69,9 @@ public class Interactive : MonoBehaviour
         if (activationChain != null)
         {
             for (int i = 0; i < activationChain.Length; ++i)
+            {
                 activationChain[i].Activate();
+            }
         }
     }
     private void ProcessInteractionChain()
@@ -66,6 +80,34 @@ public class Interactive : MonoBehaviour
         {
             for (int i = 0; i < interactionChain.Length; ++i)
                 interactionChain[i].Interact();
+        }
+    }
+    private void DeActivate()
+    {
+        isActive = false;
+    }
+    private void ProcessDeActivationChain()
+    {
+        if (deActivationChain != null)
+        {
+            for (int i = 0; i < deActivationChain.Length; ++i)
+            {
+                deActivationChain[i].DeActivate();
+            }
+        }
+    }
+    private void CheckForDeactivationCicle()
+    {
+        if (deActivationChain != null)
+        {
+            for (int i = 0; i < deActivationChain.Length; ++i)
+            {
+                if (!deActivationChain[i].isActive)
+                    continue;
+                else
+                    return;
+            }
+            Activate();
         }
     }
 }
