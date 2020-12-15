@@ -15,14 +15,15 @@ public class Interactive : MonoBehaviour
     public Interactive[]    activationChain;
     public Interactive[]    deActivationChain;
     public Interactive[]    interactionChain;
-
     private Animator _animator;
     private int      _curInteractionTextId;
+    private AudioSource sound;
 
     void Start()
     {
         _animator               = GetComponent<Animator>();
         _curInteractionTextId   = 0;
+        sound                   = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -94,6 +95,10 @@ public class Interactive : MonoBehaviour
             {
                 deActivationChain[i].DeActivate();
             }
+        }
+        if(sound != null)
+        {
+            sound.Play();
         }
     }
     private void CheckForDeactivationCicle()

@@ -33,11 +33,9 @@ public class PlayerMovement : MonoBehaviour
         {
             floaty.enabled = false;
         }
-
         else
         {
             floaty.enabled = true;
-            floaty.Play("Idle_floating");
         }
     }
 }
