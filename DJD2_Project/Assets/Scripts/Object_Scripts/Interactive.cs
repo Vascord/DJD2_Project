@@ -49,11 +49,11 @@ public class Interactive : MonoBehaviour
             _animator.SetTrigger("Interact");
         if(!isActive)
         {
-            ProcessDeActivationChain();
+            ProcessDeactivationChain();
         }
         if (isActive)
         {
-            ProcessDeActivationChain();
+            ProcessDeactivationChain();
             ProcessActivationChain();
             ProcessInteractionChain();
 
@@ -86,7 +86,7 @@ public class Interactive : MonoBehaviour
     {
         isActive = false;
     }
-    private void ProcessDeActivationChain()
+    private void ProcessDeactivationChain()
     {
         if (deActivationChain != null)
         {
