@@ -3,7 +3,11 @@
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] GameObject child;
-    
+
+    [SerializeField] private ParticleSystem particleRight;
+    [SerializeField] private ParticleSystem particleLeft;
+    [SerializeField] private ParticleSystem particleTrail;
+
     public CharacterController controller;
 
     private Animator floaty;
@@ -32,10 +36,16 @@ public class PlayerMovement : MonoBehaviour
         if (x != 0 || z != 0 || y != 0)
         {
             floaty.enabled = false;
+            if (particleLeft.isPlaying) particleLeft.Stop();
+            if (particleRight.isPlaying) particleRight.Stop();
+            if (!particleTrail.isPlaying) particleTrail.Play();
         }
         else
         {
             floaty.enabled = true;
+            if (!particleLeft.isPlaying) particleLeft.Play();
+            if (!particleRight.isPlaying) particleRight.Play();
+            if (particleTrail.isPlaying) particleTrail.Stop();
         }
     }
 }
