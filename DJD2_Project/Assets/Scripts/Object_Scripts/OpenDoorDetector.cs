@@ -11,7 +11,7 @@ public class OpenDoorDetector : MonoBehaviour
         if(player.transform.CompareTag("Player")==true) {
             foreach(Animator door in doors)
             {
-                door.SetTrigger("Interact");
+                door.SetTrigger("Activate");
             }
             Destroy(gameObject);
         }
