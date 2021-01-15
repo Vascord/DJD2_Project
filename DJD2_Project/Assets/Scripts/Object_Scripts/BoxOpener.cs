@@ -20,7 +20,7 @@ public class BoxOpener : MonoBehaviour
             Light_2.GetComponent<Light>().enabled == true &&
             Light_3.GetComponent<Light>().enabled == true)
         {
-            animator.SetTrigger("Interact");
+            gameObject.SetActive(false);
         }
     }
 }
