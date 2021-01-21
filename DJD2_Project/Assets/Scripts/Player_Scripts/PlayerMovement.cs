@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator floaty;
 
-    public float speed = 12f;
-    
+    public float speed = 12f; 
+
+    private float bubbleTime = 10.0f;
+
     void Start()
     {
-        floaty = child.GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -35,17 +37,43 @@ public class PlayerMovement : MonoBehaviour
 
         if (x != 0 || z != 0 || y != 0)
         {
-            floaty.enabled = false;
-            if (particleLeft.isPlaying) particleLeft.Stop();
-            if (particleRight.isPlaying) particleRight.Stop();
-            if (!particleTrail.isPlaying) particleTrail.Play();
+            //When player is moving
+            bubbleTime = 0.0f;
+            if (particleLeft.isPlaying)
+            {
+                particleLeft.Stop();
+            }
+            if (particleRight.isPlaying)
+            {
+                particleRight.Stop();
+            }
+            if (!particleTrail.isPlaying)
+            {
+                particleTrail.Play();
+            }
         }
         else
         {
-            floaty.enabled = true;
-            if (!particleLeft.isPlaying) particleLeft.Play();
-            if (!particleRight.isPlaying) particleRight.Play();
-            if (particleTrail.isPlaying) particleTrail.Stop();
+            //When player is stoped
+            particleTrail.Stop();
+            if (bubbleTime < 0.5f)
+            {
+                if (!particleLeft.isPlaying)
+                {
+                    particleLeft.Play();
+                }
+                if (!particleRight.isPlaying)
+                {
+                    particleRight.Play();
+                }
+                bubbleTime = particleLeft.time;
+            }
+
+            else
+            {
+                particleLeft.Stop();
+                particleRight.Stop();
+            }
         }
     }
 }
