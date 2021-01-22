@@ -2,7 +2,7 @@
 
 public class OpenDoorDetector : MonoBehaviour
 {
-    [SerializeField] private GameObject player = default;
+    [SerializeField] private GameObject player;
     [SerializeField] private Animator[] doors = default;
 
     // Update is called once per frame

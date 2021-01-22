@@ -2,7 +2,7 @@
 
 public class ButtonsReveal : MonoBehaviour
 {
-    [SerializeField] private readonly GameObject[] Keystones = default;
+    [SerializeField] private GameObject[] Keystones = default;
 
 
     private Animator animator;

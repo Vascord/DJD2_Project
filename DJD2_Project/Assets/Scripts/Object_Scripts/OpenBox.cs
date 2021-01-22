@@ -13,7 +13,7 @@ public class OpenBox : MonoBehaviour
         e = 0;
         for(i = 0; i < 4; i++)
         {
-            if(paternCubes[i].GetComponent<Renderer>().material.color == 
+            if(paternCubes[i].GetComponent<Renderer>().material.color ==
                 cubes[i].GetComponent<Renderer>().material.color)
             {
                 e++;
