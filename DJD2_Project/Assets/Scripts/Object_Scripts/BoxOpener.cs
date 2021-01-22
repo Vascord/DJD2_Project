@@ -2,9 +2,7 @@
 
 public class BoxOpener : MonoBehaviour
 {
-    [SerializeField] GameObject Light_1;
-    [SerializeField] GameObject Light_2;
-    [SerializeField] GameObject Light_3;
+    [SerializeField] private GameObject[] lights = default;
 
     private Animator animator;
     // Start is called before the first frame update
@@ -16,9 +14,9 @@ public class BoxOpener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Light_1.GetComponent<Light>().enabled == true &&
-            Light_2.GetComponent<Light>().enabled == true &&
-            Light_3.GetComponent<Light>().enabled == true)
+        if(lights[0].GetComponent<Light>().enabled &&
+            lights[1].GetComponent<Light>().enabled &&
+            lights[2].GetComponent<Light>().enabled)
         {
             gameObject.SetActive(false);
         }

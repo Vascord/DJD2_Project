@@ -2,7 +2,7 @@
 
 public class ButtonsReveal : MonoBehaviour
 {
-    [SerializeField] GameObject[] Keystones;
+    [SerializeField] private readonly GameObject[] Keystones = default;
 
 
     private Animator animator;
@@ -21,7 +21,7 @@ public class ButtonsReveal : MonoBehaviour
         a = 0;
         for (i = 0; i < 3; i++)
         {
-            if (Keystones[i].GetComponent<BoxCollider>().enabled == false)
+            if (!Keystones[i].GetComponent<BoxCollider>().enabled)
             {
                 a += 1;
             }

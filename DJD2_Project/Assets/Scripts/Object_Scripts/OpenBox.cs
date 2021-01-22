@@ -2,8 +2,8 @@
 
 public class OpenBox : MonoBehaviour
 {
-    [SerializeField] GameObject[] paternCubes;
-    [SerializeField] GameObject[] cubes;
+    [SerializeField] private GameObject[] paternCubes = default;
+    [SerializeField] private GameObject[] cubes = default;
     private int e;
     private int i;
 
@@ -20,12 +20,9 @@ public class OpenBox : MonoBehaviour
             }
         }
 
-
         if(e == 4)
         {
             gameObject.GetComponent<Animator>().SetTrigger("Activate");
         }
-
-        
     }
 }

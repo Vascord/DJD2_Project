@@ -2,24 +2,12 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] GameObject child;
-
-    [SerializeField] private ParticleSystem particleRight;
-    [SerializeField] private ParticleSystem particleLeft;
-    [SerializeField] private ParticleSystem particleTrail;
-
-    public CharacterController controller;
-
-    private Animator floaty;
-
-    public float speed = 12f; 
-
+    [SerializeField] private ParticleSystem particleRight = default;
+    [SerializeField] private ParticleSystem particleLeft = default;
+    [SerializeField] private ParticleSystem particleTrail = default;
+    [SerializeField] public CharacterController controller;
+    [SerializeField] public float speed = 12f;
     private float bubbleTime = 10.0f;
-
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -28,11 +16,10 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         float y = Input.GetAxis("Up/Down");
-        
 
         // Update player position with the movement input
-        Vector3 move = transform.right * x + transform.forward * z + transform.up * y;
-        
+        Vector3 move = (transform.right * x) + (transform.forward * z) + 
+            (transform.up * y);
         controller.Move(move * speed * Time.deltaTime);
 
         if (x != 0 || z != 0 || y != 0)
@@ -54,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //When player is stoped
+            //When player is stopped
             particleTrail.Stop();
             if (bubbleTime < 0.5f)
             {
