@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     { //Leaves the application, does not work on the editor
-        Debug.Log("Quitted!");
         Application.Quit();
     }
 }
