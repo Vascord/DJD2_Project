@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Interactive : MonoBehaviour
 {
     public enum InteractiveType { PICKABLE, INTERACT_ONCE, INTERACT_MULTI, INDIRECT };
-    
 
     public InteractiveType  type;
     public bool             isActive;

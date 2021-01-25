@@ -8,19 +8,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public CharacterController controller;
     [SerializeField] public float speed = 12f;
     private float bubbleTime = 10.0f;
+    private float movementFlow = 0.3f;
+    private bool velocity = true;
+    private float x;
+    private float z;
+    private float y;
 
     // Update is called once per frame
     void Update()
     {
         // Get the input for th movement
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        float y = Input.GetAxis("Up/Down");
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+        y = Input.GetAxis("Up/Down");
 
         // Update player position with the movement input
         Vector3 move = (transform.right * x) + (transform.forward * z) + 
             (transform.up * y);
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * speed * Time.deltaTime * movementFlow);
 
         if (x != 0 || z != 0 || y != 0)
         {
@@ -60,6 +65,35 @@ public class PlayerMovement : MonoBehaviour
             {
                 particleLeft.Stop();
                 particleRight.Stop();
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(x == 0 && y == 0 && z == 0)
+        {
+            movementFlow = 0.4f;
+            velocity = true;
+        }
+        else
+        {
+            if(velocity)
+            {
+                movementFlow += 0.05f;
+            }
+            else
+            {
+                movementFlow -= 0.01f;
+            }
+
+            if(movementFlow >= 1.4f)
+            {
+                velocity = false;
+            }
+            else if (movementFlow <= 0.4f)
+            {
+                velocity = true;
             }
         }
     }

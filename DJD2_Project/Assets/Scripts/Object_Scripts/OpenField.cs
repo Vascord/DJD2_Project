@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class OpenField : MonoBehaviour
 {
-    [SerializeField] private GameObject[] coins;
+    [SerializeField] private GameObject[] coins = default;
 
     // Update is called once per frame
     void Update()

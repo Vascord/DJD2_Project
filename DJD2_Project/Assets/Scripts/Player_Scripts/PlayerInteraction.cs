@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private const float MAX_INTERACTION_DISTANCE = 1.5f;
-
+    private const float MAX_INTERACTION_DISTANCE = 2f;
     public CanvasManager canvasManager;
-
     private Transform           _cameraTransform;
     private Interactive         _currentInteractive;
     private bool                _requirementsInInventory;
@@ -37,7 +35,9 @@ public class PlayerInteraction : MonoBehaviour
                 SetCurrentInteractive(interactive);
         }
         else
+        {
             ClearCurrentInteractive();
+        }
     }
 
     private void SetCurrentInteractive(Interactive interactive)
