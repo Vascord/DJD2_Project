@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem particleTrail = default;
     [SerializeField] public CharacterController controller;
     [SerializeField] public float speed = 12f;
+    [SerializeField] private GameObject moveSound;
     private float bubbleTime = 10.0f;
     private float movementFlow = 0.3f;
     private bool velocity = true;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         if (x != 0 || z != 0 || y != 0)
         {
             //When player is moving
+            moveSound.GetComponent<AudioSource>().Play();
             bubbleTime = 0.0f;
             if (particleLeft.isPlaying)
             {
