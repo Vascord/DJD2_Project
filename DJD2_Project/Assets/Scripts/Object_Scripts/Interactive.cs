@@ -120,4 +120,9 @@ public class Interactive : MonoBehaviour
             Activate();
         }
     }
+
+    private void AudioPlay()
+    {
+        GetComponent<AudioSource>().Play();
+    }
 }

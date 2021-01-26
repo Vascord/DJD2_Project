@@ -3,15 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
+    [SerializeField] private GameObject player;
 
     // Update is called once per frame
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+            if (gameIsPaused)
             {
                 Resume();
             } else
@@ -26,7 +27,8 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        gameIsPaused = false;
+        player.GetComponent<AudioSource>().Play();
     }
 
     private void Pause()
@@ -34,13 +36,14 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        GameIsPaused = true;
+        gameIsPaused = true;
+        player.GetComponent<AudioSource>().Pause();
     }
 
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        gameIsPaused = false;
         SceneManager.LoadScene("Menu");
     }
 
