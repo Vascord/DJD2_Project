@@ -18,13 +18,13 @@ public class Interactive : MonoBehaviour
     private int      _curInteractionTextId;
     private AudioSource sound;
 
-    void Start()
+    private void Start()
     {
         _animator               = GetComponent<Animator>();
         _curInteractionTextId   = 0;
         sound                   = GetComponent<AudioSource>();
     }
-    void Update()
+    private void Update()
     {
         if (deactivationLeader == true)
             CheckForDeactivationCicle();
@@ -57,10 +57,16 @@ public class Interactive : MonoBehaviour
             ProcessActivationChain();
             ProcessInteractionChain();
 
-            if (type == InteractiveType.INTERACT_ONCE || type == InteractiveType.PICKABLE)
+            if (type == InteractiveType.INTERACT_ONCE || 
+                type == InteractiveType.PICKABLE)
+            {
                 GetComponent<Collider>().enabled = false;
+            }
             else if (type == InteractiveType.INTERACT_MULTI)
-                _curInteractionTextId = (_curInteractionTextId + 1) % interactionTexts.Length;
+            {
+                _curInteractionTextId = (_curInteractionTextId + 1) %
+                    interactionTexts.Length;
+            }
         }
     }
 

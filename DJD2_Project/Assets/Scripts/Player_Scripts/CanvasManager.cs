@@ -7,7 +7,7 @@ public class CanvasManager : MonoBehaviour
     public Text         interactionText;
     public RawImage[]   inventoryIcons;
 
-    void Start()
+    private void Start()
     {
         HideInteractionPanel();
     }

@@ -5,7 +5,7 @@ public class OpenField : MonoBehaviour
     [SerializeField] private GameObject[] coins = default;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(coins[0].transform.localEulerAngles.z == 270 &&
             coins[1].transform.localEulerAngles.z == 0 &&

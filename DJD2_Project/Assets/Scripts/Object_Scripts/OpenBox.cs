@@ -8,7 +8,7 @@ public class OpenBox : MonoBehaviour
     private int i;
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         e = 0;
         for(i = 0; i < 4; i++)

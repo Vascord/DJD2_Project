@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class ReturnMenu : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Cursor.lockState = CursorLockMode.None;
         if (other.gameObject.tag == "Player")

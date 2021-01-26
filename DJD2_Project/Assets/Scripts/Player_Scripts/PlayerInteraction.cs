@@ -10,14 +10,14 @@ public class PlayerInteraction : MonoBehaviour
     private bool                _requirementsInInventory;
     private List<Interactive>   _inventory;
 
-    void Start()
+    private void Start()
     {
         _cameraTransform            = GetComponentInChildren<Camera>().transform;
         _requirementsInInventory    = false;
         _inventory                  = new List<Interactive>();
     }
 
-    void Update()
+    private void Update()
     {
         CheckForInteractive();
         CheckForInteraction();
@@ -25,9 +25,13 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CheckForInteractive()
     {
-        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hitInfo, MAX_INTERACTION_DISTANCE))
+        if (Physics.Raycast(_cameraTransform.position,
+            _cameraTransform.forward,
+            out RaycastHit hitInfo,
+            MAX_INTERACTION_DISTANCE))
         {
-            Interactive interactive = hitInfo.transform.GetComponent<Interactive>();
+            Interactive interactive = 
+                hitInfo.transform.GetComponent<Interactive>();
 
             if (interactive == null)
                 ClearCurrentInteractive();
@@ -47,7 +51,11 @@ public class PlayerInteraction : MonoBehaviour
         if (PlayerHasInteractionRequirements())
         {
             _requirementsInInventory = true;
-            canvasManager.ShowInteractionPanel(interactive.GetInteractionText());
+            if(interactive.GetInteractionText() != "")
+            {
+                canvasManager.ShowInteractionPanel(
+                    interactive.GetInteractionText());
+            }
         }
         else
         {
@@ -62,9 +70,10 @@ public class PlayerInteraction : MonoBehaviour
             return true;
 
         for (int i = 0; i < _currentInteractive.requirements.Length; ++i)
+        {
             if (!IsInInventory(_currentInteractive.requirements[i]))
                 return false;
-
+        }
         return true;
     }
 
@@ -78,10 +87,15 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _currentInteractive != null)
         {
-            if (_currentInteractive.type == Interactive.InteractiveType.PICKABLE)
+            if (_currentInteractive.type == 
+                Interactive.InteractiveType.PICKABLE)
+            {
                 PickCurrentInteractive();
+            }
             else if (_requirementsInInventory)
+            {
                 InteractWithCurrentInteractive();
+            }
         }
     }
 
