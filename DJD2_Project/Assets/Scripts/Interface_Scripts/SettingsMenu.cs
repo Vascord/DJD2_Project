@@ -9,9 +9,9 @@ using UnityEngine.UI;
 /// </summary>
 public class SettingsMenu : MonoBehaviour
 {
-    [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private Slider slider;
-    [SerializeField] private Dropdown resolutionDropdown;
+    [SerializeField] private AudioMixer audioMixer = default;
+    [SerializeField] private Slider slider = default;
+    [SerializeField] private Dropdown resolutionDropdown = default;
     private Resolution[] resolutions;
     private int currentresolutionIndex;
 

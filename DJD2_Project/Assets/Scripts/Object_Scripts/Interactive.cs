@@ -53,13 +53,14 @@ public class Interactive : MonoBehaviour
     }
 
     /// <summary>
-    /// Public method which activates the trigger "Activate".
+    /// Public method which activates the trigger "Activate" and says that the
+    /// object is active.
     /// </summary>
     public void Activate()
     {
         isActive = true;
 
-        if (_animator != null)
+        if (_animator != null && gameObject.layer != 8)
             _animator.SetTrigger("Activate");
     }
 
