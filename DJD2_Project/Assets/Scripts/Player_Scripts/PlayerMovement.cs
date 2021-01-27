@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Class which manages the movement of the player and his effects.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particleRight = default;
     [SerializeField] private ParticleSystem particleLeft = default;
     [SerializeField] private ParticleSystem particleTrail = default;
-    [SerializeField] public CharacterController controller;
+    [SerializeField] public CharacterController controller = default;
     [SerializeField] public float speed = 12f;
-    [SerializeField] private GameObject moveSound;
+    [SerializeField] private GameObject moveSound = default;
     private float bubbleTime = 10.0f;
     private float movementFlow = 0.3f;
     private bool velocity = true;
@@ -15,22 +18,25 @@ public class PlayerMovement : MonoBehaviour
     private float z;
     private float y;
 
-    // Update is called once per frame
+    /// <summary>
+    /// Private method called every frame.
+    /// </summary>
     private void Update()
     {
-        // Get the input for th movement
+        // Get the input for th movement.
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
         y = Input.GetAxis("Up/Down");
 
-        // Update player position with the movement input
+        // Update player position with the movement input.
         Vector3 move = (transform.right * x) + (transform.forward * z) + 
             (transform.up * y);
         controller.Move(move * speed * Time.deltaTime * movementFlow);
 
+        // Conditions for the particles to work.
         if (x != 0 || z != 0 || y != 0)
         {
-            //When player is moving
+            // When player is moving.
             moveSound.GetComponent<AudioSource>().Play();
             bubbleTime = 0.0f;
             if (particleLeft.isPlaying)
@@ -48,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //When player is stopped
+            // When player is stopped.
             particleTrail.Stop();
             if (bubbleTime < 0.5f)
             {
@@ -63,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
                 bubbleTime = particleLeft.time;
             }
 
+            // Stops the effects after 0.5 seconds.
             else
             {
                 particleLeft.Stop();
@@ -71,15 +78,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    /// <summary>
+    /// Private method called 50 times per second.
+    /// </summary>
+    private void FixedUpdate()
     {
+        // Conditions for the aquatic movement.
         if(x == 0 && y == 0 && z == 0)
         {
+            // Resets the movement flow and velocity when he stops.
             movementFlow = 0.4f;
             velocity = true;
         }
         else
         {
+            /* If velocity is true, then the player will have a impulsion like
+            movement until the movementFlow reaches 1.4, and this movement
+            will degrades over time after that until it reaches 0.4. */
             if(velocity)
             {
                 movementFlow += 0.05f;
