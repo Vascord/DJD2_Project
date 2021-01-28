@@ -15759,7 +15759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2147979968427318438, guid: 8af38359e904cd74cbb32877ec82adfe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.27
+      value: -1.82
       objectReference: {fileID: 0}
     - target: {fileID: 2147979968427318438, guid: 8af38359e904cd74cbb32877ec82adfe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29768,7 +29768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 8.1}
+  m_AnchoredPosition: {x: 0, y: 8.099976}
   m_SizeDelta: {x: 415, y: 55}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1129648804
@@ -36478,8 +36478,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 37.30001}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 37.30001}
+  m_SizeDelta: {x: 178.30457, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1391382186
 MonoBehaviour:
@@ -45138,7 +45138,7 @@ MonoBehaviour:
   particleLeft: {fileID: 2049030310}
   particleTrail: {fileID: 168270914}
   controller: {fileID: 1706474783}
-  speed: 3
+  speed: 3.5
   moveSound: {fileID: 1785581331}
 --- !u!143 &1706474783
 CharacterController:
@@ -49156,8 +49156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: -67.39999}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -67.39999}
+  m_SizeDelta: {x: 178.30457, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1849553721
 MonoBehaviour:
